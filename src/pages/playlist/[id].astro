@@ -2,12 +2,13 @@
 import MusicsTable from "@/components/MusicsTable.astro"
 import Layout from "../../layouts/Layout.astro"
 import { CardPlayButton } from "@/components/CardPlayButton"
-import { allPlaylists, songs } from "@/lib/data"
+import { getPlaylistById, getSongsByAlbumId } from "../api/spotify-client"
 
 const { id } = Astro.params
 
-const playlist = allPlaylists.find((playlist) => playlist.id === id)
-const playListSongs = songs.filter((song) => song.albumId === playlist?.albumId)
+const playlist = await getPlaylistById(id as string)
+const playListSongs = await getSongsByAlbumId(playlist?.albumId as string)
+
 ---
 
 <Layout title="Spotify Clone">
@@ -67,3 +68,4 @@ const playListSongs = songs.filter((song) => song.albumId === playlist?.albumId)
     </section>
   </div>
 </Layout>
+@/lib/constants

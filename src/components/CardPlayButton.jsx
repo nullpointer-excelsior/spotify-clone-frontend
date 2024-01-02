@@ -1,5 +1,6 @@
 import { Pause, Play } from "./Player"
 import { usePlayerStore } from '@/store/playerStore'
+import { getPlaylistById, getSongsByAlbumId } from "@/pages/api/spotify-client"
 
 export function CardPlayButton ({ id, size = 'small' }) {
   const {
@@ -11,20 +12,17 @@ export function CardPlayButton ({ id, size = 'small' }) {
 
   const isPlayingPlaylist = isPlaying && currentMusic?.playlist.id === id
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (isPlayingPlaylist) {
       setIsPlaying(false)
       return
     }
 
-    fetch(`/api/get-info-playlist.json?id=${id}`)
-      .then(res => res.json())
-      .then(data => {
-        const { songs, playlist } = data
+    const playlist = await getPlaylistById(id)
+    const songs = await getSongsByAlbumId(playlist?.albumId)
+    setIsPlaying(true)
+    setCurrentMusic({ songs, playlist, song: songs[0] })
 
-        setIsPlaying(true)
-        setCurrentMusic({ songs, playlist, song: songs[0] })
-      })
   }
 
   const iconClassName = size === 'small' ? 'w-4 h-4' : 'w-5 h-5'

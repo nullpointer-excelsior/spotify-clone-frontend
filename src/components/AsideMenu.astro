@@ -4,8 +4,10 @@ import HomeIcon from "@/icons/Home.astro"
 import SearchIcon from "@/icons/Search.astro"
 import SideMenuItem from "./SideMenuItem.astro"
 import SideMenuCard from "./SideMenuCard.astro"
+import { getPlaylists } from "../pages/api/spotify-client"
+import type { Playlist } from "../lib/data"
 
-import { playlists } from "@/lib/data"
+const playlists = await getPlaylists()
 ---
 
 <nav class="flex flex-col flex-1 gap-2">
@@ -30,7 +32,7 @@ import { playlists } from "@/lib/data"
          Tu biblioteca
       </SideMenuItem>
 
-      {playlists.map((playlist) => <SideMenuCard playlist={playlist} />)}
+      {playlists.map((playlist: Playlist) => <SideMenuCard playlist={playlist} />)}
     </ul>
   </div>
 </nav>
