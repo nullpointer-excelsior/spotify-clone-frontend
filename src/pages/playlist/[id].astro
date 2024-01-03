@@ -7,7 +7,7 @@ import { getPlaylistById, getSongsByAlbumId } from "../api/spotify-client"
 const { id } = Astro.params
 
 const playlist = await getPlaylistById(id as string)
-const playListSongs = await getSongsByAlbumId(playlist?.albumId as string)
+const playListSongs = await getSongsByAlbumId(playlist?.albumId as unknown as string)
 
 ---
 

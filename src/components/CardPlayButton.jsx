@@ -18,7 +18,7 @@ export function CardPlayButton ({ id, size = 'small' }) {
       return
     }
 
-    const playlist = await getPlaylistById(id)
+    const { playlist } = await getPlaylistById(id)
     const songs = await getSongsByAlbumId(playlist?.albumId)
     setIsPlaying(true)
     setCurrentMusic({ songs, playlist, song: songs[0] })

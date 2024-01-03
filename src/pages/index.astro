@@ -3,8 +3,10 @@ import Layout from "../layouts/Layout.astro"
 import PlayListItemCard from "@/components/PlayListItemCard.astro"
 import Greeting from "@/components/Greeting.svelte"
 import { getPlaylists } from "./api/spotify-client"
+import ModalError from '@/components/ModalError.jsx';
 
-const playlists = await getPlaylists()
+let playlists = await getPlaylists()
+const show = playlists.length === 0
 
 ---
 
@@ -13,11 +15,17 @@ const playlists = await getPlaylists()
     id="playlist-container"
     class="relative transition-all duration-1000 bg-green-600"
   >
-    <!-- <PageHeader /> -->
+    
     <div class="relative z-10 px-6 pt-10">
       <Greeting />
       <div class="flex flex-wrap mt-6 gap-4">
-        {playlists.map((playlist: any) => <PlayListItemCard playlist={playlist} />)}
+        
+        <!-- Error Microservices stack down -->
+        <ModalError show={show} client:load />
+        <!-- {show && (<ModalError />)} -->
+        <!-- Playlist -->
+        {playlists && playlists.map((playlist: any) => <PlayListItemCard playlist={playlist} />)}
+
       </div>
 
       <div
