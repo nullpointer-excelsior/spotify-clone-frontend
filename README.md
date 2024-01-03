@@ -36,6 +36,13 @@ Visita `http://localhost:3000` en tu navegador para ver la aplicación en funcio
 
 Las contribuciones son siempre bienvenidas. Si encuentras algún problema o tienes alguna sugerencia, no dudes en abrir un issue o enviar un pull request.
 
+## Backlog
+
+- [x] Mostrar mensaje de error y de como configurar el backend basado en microservicios-nestjs
+- [ ] Cambiar algunas referencias a README e indicar repo original
+- [ ] Dockerize this app
+
+
 ## Licencia
 
 Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
