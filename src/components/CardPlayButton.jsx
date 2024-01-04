@@ -10,7 +10,7 @@ export function CardPlayButton ({ id, size = 'small' }) {
     setCurrentMusic
   } = usePlayerStore(state => state)
 
-  const isPlayingPlaylist = isPlaying && currentMusic?.playlist.id === id
+  const isPlayingPlaylist = isPlaying && currentMusic?.playlist?.id === id
 
   const handleClick = async () => {
     if (isPlayingPlaylist) {
@@ -18,7 +18,7 @@ export function CardPlayButton ({ id, size = 'small' }) {
       return
     }
 
-    const { playlist } = await getPlaylistById(id)
+    const playlist = await getPlaylistById(id)
     const songs = await getSongsByAlbumId(playlist?.albumId)
     setIsPlaying(true)
     setCurrentMusic({ songs, playlist, song: songs[0] })
