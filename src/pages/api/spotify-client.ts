@@ -1,5 +1,4 @@
-import { SPOTIFY_CLONE_URL } from "@/lib/constants";
-import { type Playlist, type Song } from "../../lib/data";
+import { type Playlist, type Song } from "@/lib/data";
 
 type HomeLibrary = {
     playlists: Playlist[];
@@ -7,8 +6,9 @@ type HomeLibrary = {
 }
 
 export async function getHomeLibrary(): Promise<HomeLibrary> {
+    const url = import.meta.env.SPOTIFY_CLONE_BACKEND_URL
     try {
-        const response = await fetch(`${SPOTIFY_CLONE_URL}/home-library`);
+        const response = await fetch(`${url}/home-library`);
         return response.json();
     } catch (error: any) {
         return { playlists: [], songs: [] };
