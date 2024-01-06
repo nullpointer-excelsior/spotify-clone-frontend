@@ -22,7 +22,6 @@ const show = playlists.length === 0
         
         <!-- Error Microservices stack down -->
         <ModalError show={show} client:load />
-        <!-- {show && (<ModalError />)} -->
         <!-- Playlist -->
         {playlists && playlists.map((playlist: any) => <PlayListItemCard playlist={playlist} />)}
 

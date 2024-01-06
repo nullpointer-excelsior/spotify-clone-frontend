@@ -6,7 +6,8 @@ type HomeLibrary = {
 }
 
 export async function getHomeLibrary(): Promise<HomeLibrary> {
-    const url = import.meta.env.SPOTIFY_CLONE_BACKEND_URL
+    // const url = "http://localhost:3017"
+    const url = import.meta.env.PUBLIC_SPOTIFY_CLONE_BACKEND_URL
     try {
         const response = await fetch(`${url}/home-library`);
         return response.json();
@@ -16,11 +17,11 @@ export async function getHomeLibrary(): Promise<HomeLibrary> {
 }
 
 export async function getPlaylists(): Promise<Playlist[]> {
-    return getHomeLibrary().then(({ playlists }) => playlists);
+    return getHomeLibrary().then((library) => library.playlists);
 }
 
 export async function getPlaylistById(id: string): Promise<Playlist | undefined> {
-    return getPlaylists().then((playlists) => playlists.find((playlist: any) => playlist.id === id));
+    return getPlaylists().then((playlists) => playlists.find((playlist: Playlist) => playlist.id === id));
 }
 
 export async function getSongs(): Promise<Song[]> {
