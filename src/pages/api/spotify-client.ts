@@ -6,7 +6,6 @@ type HomeLibrary = {
 }
 
 export async function getHomeLibrary(): Promise<HomeLibrary> {
-    // const url = "http://localhost:3017"
     const url = import.meta.env.PUBLIC_SPOTIFY_CLONE_BACKEND_URL
     try {
         const response = await fetch(`${url}/home-library`);

@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+dist
+.vscode
+.gitignore
+package-lock.json
+README.md
+.env
