@@ -40,7 +40,8 @@ Las contribuciones son siempre bienvenidas. Si encuentras algún problema o tien
 
 - [x] Mostrar mensaje de error y de como configurar el backend basado en microservicios-nestjs
 - [ ] Cambiar algunas referencias a README e indicar repo original
-- [ ] Dockerize this app
+- [x] Dockerize this app
+- [ ] Fix media url audio
 
 
 ## Licencia
